@@ -31,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GwdmMetadataHandler::class, fn ($app) => $app->make(GwdmHandlerFactory::class)
             ->resolve(Config::get('metadata.GWDM.version')));
 
+        $this->app->bind(\App\Services\Compare\ExpressionEvaluator::class, \App\Services\Compare\DataGetExpressionEvaluator::class);
+
         if (Config::get('logging.sqlLog') === true) {
             \DB::listen(function ($query) {
                 $bindings = [];

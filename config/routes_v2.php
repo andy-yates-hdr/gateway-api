@@ -345,6 +345,17 @@ return [
     ],
     [
         'name' => 'datasets',
+        'method' => 'post',
+        'path' => '/datasets/compare',
+        'methodController' => 'DatasetCompareController@compare',
+        'namespaceController' => 'App\Http\Controllers\Api\V2',
+        'middleware' => [
+            'throttle:30,1',
+        ],
+        'constraint' => [],
+    ],
+    [
+        'name' => 'datasets',
         'method' => 'get',
         'path' => '/datasets/{id}',
         'methodController' => 'DatasetController@showActive',
